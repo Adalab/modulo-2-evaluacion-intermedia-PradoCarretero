@@ -1,5 +1,5 @@
 "use strict";
-/* VARIABLES */
+//--------------------VARIABLES
 const selected = document.querySelector(".js-selected");
 const amount = document.querySelector(".js-amount");
 const button = document.querySelector(".js-button");
@@ -8,6 +8,7 @@ const message = document.querySelector(".js-message");
 const totaltext = document.querySelector(".js-totaltext");
 let pocket = 50;
 
+//--------------------FUNCTIONS
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
 }
@@ -20,44 +21,40 @@ function hidden (){
         buttonRe.classList.add("hidden");
 }
 function finish (){
-    if (total>200){
+    if (pocket>200){
         button.classList.add("hidden");
         buttonRe.classList.remove("hidden");
         message.innerHTML= '¡Has ganado!';
     }
-    else if (total<0){
+    else if (pocket<0){
         message.innerHTML= '¡Has perdido!';
     }
 }
+
 function accumulated(randomNumber, selectedvalue, pocket) {
     const aggregate = amount.value;
     if (selectedvalue==randomNumber) {
-     pocket += parseInt(aggregate);
+     pocket += 2 * parseInt(aggregate);
         totaltext.innerHTML= `Saldo ${pocket} `;
+        
         return pocket;
     }
     else {
         pocket -= parseInt(aggregate);
         totaltext.innerHTML= `Saldo ${pocket} `;
         return pocket; 
-
     }
 }
 
 function compare (randomNumber, selectedvalue) {
-    
-    console.log(randomNumber);
-    console.log(selectedvalue);
     if (selectedvalue==randomNumber) {
-        console.log("has ganado")
         message.innerHTML = 'Has ganado el doble de lo apostado';
     }
     else {
-        console.log("has perdido");
         message.innerHTML = 'Has perdido lo apostado';
     }
 }
-
+//--------------------MAIN FUNCTION 
 function handleClickButton(event) {
     event.preventDefault();
     const randomNumber = getRandomNumber(6);
@@ -71,5 +68,7 @@ function handleClickButton(event) {
     hidden();
     resetcounter();
 } */
+
+//--------------------EVENT LISTENER
 button.addEventListener("click", handleClickButton);
 /* buttonRe.addEventListener("click", handleClickButtonRe); */
