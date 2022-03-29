@@ -5,7 +5,8 @@ const amount = document.querySelector(".js-amount");
 const button = document.querySelector(".js-button");
 const buttonRe = document.querySelector(".js-buttonRe");
 const message = document.querySelector(".js-message");
-let pocket = 50;
+const totaltext = document.querySelector(".js-totaltext");
+
 
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
@@ -19,21 +20,27 @@ function hidden (){
         buttonRe.classList.add("hidden");
 }
 function finish (){
-    if (pocket>200){
+    if (total>200){
         button.classList.add("hidden");
         buttonRe.classList.remove("hidden");
         message.innerHTML= '¡Has ganado!';
     }
-    else if (pocket<0){
+    else if (total<0){
         message.innerHTML= '¡Has perdido!';
     }
 }
-function accumulated(randomNumber, selectedvalue) {
+function accumulated(randomNumber, selectedvalue, pocket) {
     const aggregate = amount.value;
     if (selectedvalue==randomNumber) {
-        console.log(accumulated);
-     /*  let pocket =+ 2*aggregate;
-     message.innerHTML= `Saldo ${pocket} `; */
+        console.log(aggregate);
+      const total = pocket + 2*aggregate;
+      totaltext.innerHTML= `Saldo ${total} `;
+     return total;
+    }
+    else {
+        const total = pocket - aggregate;
+        totaltext.innerHTML= `Saldo ${total} `;
+        return total;
     }
 }
 
@@ -55,10 +62,11 @@ function handleClickButton(event) {
     event.preventDefault();
     const randomNumber = getRandomNumber(6);
     const selectedvalue = selected.value;
+    let pocket = 50;
     compare(randomNumber, selectedvalue);
 
-    accumulated(randomNumber, selectedvalue);
-  /*   finish(); */
+    accumulated(randomNumber, selectedvalue, pocket);
+    finish();
 }
 /* function handleClickButtonRe(event) {
     event.preventDefault();  
