@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./styles/main.css" />
     <title>Evaluación Intermedia</title>
   </head>
-  <body>
-    <h1>Dados y Apuestas</h1>
+  <body class="wrapper">
+    <h1 class="title">Dados y Apuestas</h1>
     <h2>Introduce aquí tu jugada:</h2>
     <form action="">
       <select class="js-selected" name="" id="">
@@ -20,8 +20,15 @@
         <option>5</option>
         <option>6</option>
       </select>
-      <input class="js-amount" type="number" name="" id="" />
-      <input class="js-button" type="submit" value="Jugar" />
+      <input
+        class="js-amount"
+        placeholder="¿Cuánto apuestas?"
+        type="number"
+        name=""
+        id=""
+      />
+      <input class="js-button button" type="submit" value="Jugar" />
+      <input class="js-button hidden" type="submit" value="Reiniciar juego" />
     </form>
     <h2 class="js-message">Vamos a jugar!</h2>
     <p>Saldo: 50</p>
